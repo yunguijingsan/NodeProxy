@@ -1,0 +1,93 @@
+<html lang="zh-cn" ng-app>
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <script src="./testB.js"></script>
+    <title>
+        TEST
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional Bootstrap Theme -->
+    <link href="./css/bootstrap-theme.min.css" data-href="./css/bootstrap-theme.min.css" rel="stylesheet"
+          id="bs-theme-stylesheet">
+
+    <link href="./css/path.css" rel="stylesheet">
+
+    <!-- Documentation extras -->
+    <link href="./css/docs.min.css" rel="stylesheet">
+
+    <link href="./css/style.css" rel="stylesheet">
+
+    <script>
+        var _hmt = _hmt || [];
+    </script>
+</head>
+<body>
+
+<div class="container bs-docs-container" ng-controller="TestAllCrl">
+    <div class="col-md-9" role="main" >
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-{{service.state}}" ng-repeat="service in allApi.apis">
+                <div class="panel-heading" role="tab" id="PH{{service.id}}">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#{{service.id}}" aria-expanded="true"
+                           href="#PD{{service.id}}" aria-controls="PC{{service.id}}">
+                           {{service.path}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="PD{{service.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="panel-group" id="operation-accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-{{operation.state}}" ng-repeat="operation in service.operations">
+                                <div class="panel-heading" role="tab" id="PH{{operation.id}}">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#{{operation.id}}" aria-expanded="true"
+                                           href="#PD{{operation.id}}" aria-controls="PC{{operation.id}}">
+                                            {{operation.path}}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="PD{{operation.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-{{cas.state}}" ng-repeat="cas in operation.cases">{{cas.description}}
+                                                <pre class="text-danger" ng-if="cas.state=='danger'">{{cas.result}}</pre>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" role="complementary" hidden="true">
+            <ul class="nav bs-docs-sidenav" ng-repeat="service in allApi.apis">
+                <li>
+                    <a href="#PH{{service.id}}">{{service.path}}</a>
+                    <ul class="nav">
+                        <li ng-repeat="operation in service.operations">
+                            <a href="#PH{{operation.id}}">{{operation.path}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="back-to-top" href="#top">
+                返回顶部
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script src="./js/angular.min.js"></script>
+<script src="./js/controller.js" type="text/javascript"></script>
+</body>
+</html>
