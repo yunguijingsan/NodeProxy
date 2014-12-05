@@ -3,18 +3,23 @@
  */
 var allApi = {};
 var testScope = {}
+var groups = testData;
 function TestAllCrl($http,$scope){
-    testScope = $scope;
-    $scope.allApi = {};
-    var url = "/doc.json";
-    $http.get(url).success(function (data) {
-        refactorData(data);
-        combineData(data);
-        $scope.allApi = data;
-        testScope.allApi = data;
-        setTimeout(init,0);
-    });
-    setTimeout(init,0);
+    console.log(testData)
+    cartman.init($scope,groups);
+    $scope.groups = groups;
+//    testScope = $scope;
+//    $scope.allApi = {};
+//    var url = "/doc.json";
+//    $http.get(url).success(function (data) {
+//        refactorData(data);
+//        combineData(data);
+//
+//        $scope.allApi = data;
+//        testScope.allApi = data;
+//        setTimeout(init,0);
+//    });
+//    setTimeout(init,0);
 }
 function AllApiCtrl($http,$scope){
 
@@ -35,7 +40,7 @@ function combineData(data){
                  for(var i=0; i< operation.cases.length;i++){
                      operation.cases[i].id = createUUID();
                      operation.cases[i].state = "default";
-                     getResult(operation.path,operation.method,operation.cases[i]);
+//                     getResult(operation.path,operation.method,operation.cases[i]);
                  }
              }
           });
@@ -63,29 +68,6 @@ function apply() {
     testScope.$apply();
 }
 function getResult(path,method,aCase){
-    $.ajax({
-        url: path,
-        type: method,
-        data: aCase.params,
-        success: function(data) {
-            if(data == aCase.expectation){
-                aCase.state = "success";
-            }else{
-                aCase.state = "danger";
-                aCase.result = data;
-            }
-//            aCase.result = data;
-            apply();
-            testScope.$apply();
-        },
-        error: function(xhr, err, exp) {
-            aCase.state = "danger";
-            aCase.result = err.stack;
-            apply();
-            testScope.$apply();
-        }
-    });
-
 }
 function refactorData(data){
     for(var i=0; i<data.apis.length;i++){
@@ -138,19 +120,4 @@ function init(){
     });
     $(".service-header").click(function(){
     });
-}
-var createUUID = (function(uuidRegEx, uuidReplacer) {
-    return function() {
-        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
-    };
-})(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0,
-        v = c == "x" ? r : (r & 3 | 8);
-    return v.toString(16);
-});
-
-var STATUS ={
-        SUCCESS:'success',
-        DEFAULT:'default',
-        DANGER:'danger'
 }
