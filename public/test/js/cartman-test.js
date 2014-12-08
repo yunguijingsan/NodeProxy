@@ -5,11 +5,16 @@ var cartman = (function () {
         DEFAULT: 'default',
         DANGER: 'danger'
     }
+    var currentGroup=0,currentUrl=0,currentCase=-1;
     var _groups = [];
     var _$scope = {};
+
     var init = function ($scope,groups) {
         _$scope = $scope;
+        _$scope.runStepCount = 0;
+        _$scope.stepCount = 0;
         _groups = groups;
+        var count = 0;
         _groups.forEach(function(group){
             group.state=STATUS.DEFAULT;
             group.id = createUUID();
@@ -21,13 +26,16 @@ var cartman = (function () {
                     var cas = url.cases[j];
                     cas.state = STATUS.DEFAULT;
                     cas.id = createUUID();
+                    count ++;
                 }
             }
         })
+        _$scope.runStepCount = count;
+        executeNext();
+//        _groups.forEach(function(group){
+//            executeGroup(group);
+//        })
 
-        _groups.forEach(function(group){
-            executeGroup(group);
-        })
     }
     var executeGroup = function (group) {
         if(group.state!=STATUS.DEFAULT){
@@ -100,7 +108,7 @@ var cartman = (function () {
             },
             error: function(xhr, err, exp) {
                 aCase.state = "danger";
-                aCase.result = err.stack;
+                aCase.result = xhr.responseText;
                 applyUrl(url,group);
             }
         });
@@ -109,7 +117,7 @@ var cartman = (function () {
         var i = 0;
         url.cases.forEach(function(cas){
             if(cas.state ==STATUS.DEFAULT){
-                executeCase(cas,url,group);
+//                executeCase(cas,url,group);
             }else{
                 if(cas.state==STATUS.DANGER){
                     url.state = STATUS.DANGER;
@@ -123,14 +131,14 @@ var cartman = (function () {
 
         if(url.cases.length == i){
             url.state = STATUS.SUCCESS;
-            applyGroup(group);
         }
+        applyGroup(group);
     }
     var applyGroup = function(group){
         var i = 0;
         group.urls.forEach(function(url){
             if(url.state == STATUS.DEFAULT){
-                executeUrl(url,group);
+//                executeUrl(url,group);
             }else{
                 if(url.state == STATUS.DANGER){
                     group.state = STATUS.DANGER;
@@ -149,10 +157,65 @@ var cartman = (function () {
     var apply = function(){
         _$scope.$apply();
     }
+    var calculateNext = function(){
+        if(currentCase < _groups[currentGroup].urls[currentUrl].cases.length -1){
+            currentCase ++;
+        }else{
+            if(currentUrl < _groups[currentGroup].urls.length-1){
+                currentCase = 0;
+                currentUrl ++;
+            }else{
+                if(currentGroup < _groups.length-1){
+                    currentCase = 0;
+                    currentUrl = 0;
+                    currentGroup ++;
+                }else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    var executeNext = function(){
+       if(!calculateNext()){
+          return false;
+       }
+        var group = _groups[currentGroup];
+        var url = group.urls[currentUrl];
+        var aCase = url.cases[currentCase];
+        if(aCase.state != STATUS.DEFAULT){
+            return;
+        }
+        $.ajax({
+            url: url.path,
+            type: url.method,
+            data: aCase.params,
+            success: function(data) {
+                if(data == aCase.expectation){
+                    aCase.state = "success";
+                }else{
+                    aCase.state = "danger";
+                    aCase.result = data;
+                }
+                _$scope.stepCount ++;
+                applyUrl(url,group);
+                executeNext();
+            },
+            error: function(xhr, err, exp) {
+                aCase.state = "danger";
+                aCase.result = xhr.responseText;
+                _$scope.stepCount ++;
+                applyUrl(url,group);
+                executeNext();
+            }
+        });
+    };
+
     var createUUID = (function(uuidRegEx, uuidReplacer) {
         return function() {
             return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
         };
+
     })(/[xy]/g, function(c) {
         var r = Math.random() * 16 | 0,
             v = c == "x" ? r : (r & 3 | 8);
@@ -160,7 +223,8 @@ var cartman = (function () {
     });
     return {
         init: init,
-        status: STATUS
+        status: STATUS,
+        execute:executeNext
     }
 })();
 

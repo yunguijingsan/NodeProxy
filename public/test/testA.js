@@ -6,7 +6,7 @@ var testData = [
             {
                 "name":"url1",
                 "dependencies":[],
-                "path": "/mathB/sum",
+                "path": "/mathA/sum",
                 "method": "GET",
                 "type":"query",
                 "params":["a","b"],
@@ -23,7 +23,7 @@ var testData = [
             {
                 "name":"url2",
                 "dependencies":[],
-                "path": "/mathB/sum",
+                "path": "/mathA/sum",
                 "method": "GET",
                 "type":"query",
                 "params":["a","b"],
@@ -56,7 +56,7 @@ var testData = [
             {
                 "name":"url3",
                 "dependencies":[],
-                "path": "/mathB/test",
+                "path": "/mathA/test",
                 "method": "GET",
                 "type":"query",
                 "cases":[
@@ -81,7 +81,7 @@ var testData = [
             {
                 "name":"url4",
                 "dependencies":["url1"],
-                "path": "/mathB/max",
+                "path": "/mathA/max",
                 "method": "GET",
                 "type":"query",
                 "cases":[
@@ -219,7 +219,7 @@ var testData = [
                 "name":"url1",
                 "dependencies":[],
                 "path": "/mathB/sum",
-                "method": "GET",
+                "method": "POST",
                 "type":"query",
                 "params":["a","b"],
                 "cases":[{
@@ -236,7 +236,7 @@ var testData = [
                 "name":"url2",
                 "dependencies":[],
                 "path": "/mathB/sum",
-                "method": "GET",
+                "method": "POST",
                 "type":"query",
                 "params":["a","b"],
                 "cases": [
@@ -269,7 +269,7 @@ var testData = [
                 "name":"url3",
                 "dependencies":[],
                 "path": "/mathB/test",
-                "method": "GET",
+                "method": "POST",
                 "type":"query",
                 "cases":[
                     {
@@ -294,7 +294,7 @@ var testData = [
                 "name":"url4",
                 "dependencies":["url1"],
                 "path": "/mathB/max",
-                "method": "GET",
+                "method": "POST",
                 "type":"query",
                 "cases":[
                     {
