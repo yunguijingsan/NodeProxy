@@ -5,27 +5,15 @@
     <title>
         TEST
     </title>
-    <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Optional Bootstrap Theme -->
     <link href="./css/bootstrap-theme.min.css" data-href="./css/bootstrap-theme.min.css" rel="stylesheet"
-          id="bs-theme-stylesheet">
-
-    <link href="./css/path.css" rel="stylesheet">
-
-    <!-- Documentation extras -->
-    <link href="./css/docs.min.css" rel="stylesheet">
-
+        >
     <link href="./css/style.css" rel="stylesheet">
-
-    <script>
-        var _hmt = _hmt || [];
-    </script>
 </head>
 <body>
 
-<div class="container bs-docs-container" ng-controller="TestAllCrl">
+<div class="container" ng-controller="TestAllCrl">
     <div class="col-md-9" role="main" >
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-{{service.state}}" ng-repeat="service in groups">
@@ -45,7 +33,7 @@
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#{{operation.id}}" aria-expanded="true"
                                            href="#PD{{operation.id}}" aria-controls="PC{{operation.id}}">
-                                            {{operation.path}}
+                                            {{operation.name}}-{{operation.path}}&nbsp;&nbsp;&nbsp;{{operation.dependencies}}
                                         </a>
                                     </h4>
                                 </div>
@@ -66,8 +54,8 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" role="complementary" hidden="true">
-            <ul class="nav bs-docs-sidenav" ng-repeat="service in allApi.apis">
+        <div class=""hidden="true">
+            <ul class="nav" ng-repeat="service in allApi.apis">
                 <li>
                     <a href="#PH{{service.id}}">{{service.path}}</a>
                     <ul class="nav">
