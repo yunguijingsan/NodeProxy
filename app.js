@@ -2,6 +2,7 @@ var express = require('express');
 var querystring = require('querystring');
 var http = require('http');
 var bodyParser = require('body-parser');
+var is   = require('type-is');
 var app = express();
 
 var proxyServer = "localhost";
@@ -9,7 +10,8 @@ var proxyDomain = "";
 var proxyServerPort = 8080;
 
 app.use(bodyParser.text());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.disable('etag');
 app.use(express.static(__dirname + '/public'));
 
@@ -43,9 +45,25 @@ function getProxy(req, res) {
     };
     proxy(req,res,opt,data);
 }
+function getJsonParam(body) {
+    var str = "";
+    for(var key in body){
+        if(str == ""){
+            str += key+"="+JSON.stringify(body[key]);
+        }else{
+            str += "&"+key+"="+JSON.stringify(body[key]);
+        }
+    }
+    return str;
+}
 function postProxy(req, res) {
     var proxyPath = req.url;
-    var data =require('querystring').stringify(req.body);
+    console.log(req.body);
+    if(is(req,['json'])){
+       var data = getJsonParam(req.body);
+    }else{
+        var data = require("querystring").stringify(req.body);
+    }
 
     var opt = {
         method: "POST",
@@ -82,7 +100,7 @@ function proxy(req,res,opt,data,isPost){
         res.status(400).send(data);
     });
     if(isPost){
-        req_proxy.write(data+"\n");
+        req_proxy.write(data);
     }
     req_proxy.end();
 }

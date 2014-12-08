@@ -189,7 +189,7 @@ var cartman = (function () {
         $.ajax({
             url: url.path,
             type: url.method,
-            data: aCase.params,
+            data: getJsonParam(aCase.params),
             success: function(data) {
                 if(data == aCase.expectation){
                     aCase.state = "success";
@@ -210,7 +210,17 @@ var cartman = (function () {
             }
         });
     };
-
+    var getJsonParam = function (params){
+        var str = "";
+        for(var key in params){
+            if(str == ""){
+                str += key+"="+JSON.stringify(params[key]);
+            }else{
+                str += "&"+key+"="+JSON.stringify(params[key]);
+            }
+        }
+        return str;
+    }
     var createUUID = (function(uuidRegEx, uuidReplacer) {
         return function() {
             return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
