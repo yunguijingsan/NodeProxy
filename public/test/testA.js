@@ -6,7 +6,7 @@ var testData = [
             {
                 "name": "url1",
                 "dependencies": [],
-                "path": "/mathA/docInfo",
+                "path": "/mathB/docInfo",
                 "method": "POST",
                 "cases": [
                     {
@@ -51,17 +51,65 @@ var testData = [
                     }
                 ]
             },
+            {
+                "name": "url2",
+                "dependencies": [],
+                "path": "/mathB/testChinese",
+                "method": "POST",
+                "cases": [
+                    {
+                        "params": {
+                            "str" : "中文测试"
+                        },
+                        "description": "中文测试",
+                        "expectation": "0中文测试",
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            "str" : "222中文测试"
+                        },
+                        "description": "222中文测试",
+                        "expectation": "222中文测试",
+                        "result": ""
+                    }
+                ]
+            },
+            {
+                "name": "url3",
+                "dependencies": ["url2"],
+                "path": "/mathB/testChinese",
+                "method": "GET",
+                "cases": [
+                    {
+                        "params": {
+                            "str" : "中文测试"
+                        },
+                        "description": "中文测试",
+                        "expectation": "中文测试",
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            "str" : "222中文测试"
+                        },
+                        "description": "222中文测试",
+                        "expectation": "222中文测试",
+                        "result": ""
+                    }
+                ]
+            }
         ]
     },
     {
-        name: "groupA",
-        dependencies: [],
+        name: "groupB",
+        dependencies: ["groupC"],
         urls: [
             {
                 "name": "url1",
                 "dependencies": [],
-                "path": "/mathA/sum",
-                "method": "GET",
+                "path": "/mathB/sum",
+                "method": "POST",
                 "type": "query",
                 "params": ["a", "b"],
                 "cases": [
@@ -79,8 +127,8 @@ var testData = [
             {
                 "name": "url2",
                 "dependencies": [],
-                "path": "/mathA/sum",
-                "method": "GET",
+                "path": "/mathB/sum",
+                "method": "POST",
                 "type": "query",
                 "params": ["a", "b"],
                 "cases": [
@@ -114,9 +162,9 @@ var testData = [
                 ]},
             {
                 "name": "url3",
-                "dependencies": [],
-                "path": "/mathA/test",
-                "method": "GET",
+                "dependencies": ["url2"],
+                "path": "/mathB/test",
+                "method": "POST",
                 "type": "query",
                 "cases": [
                     {
@@ -141,8 +189,8 @@ var testData = [
             {
                 "name": "url4",
                 "dependencies": ["url1"],
-                "path": "/mathA/max",
-                "method": "GET",
+                "path": "/mathB/max",
+                "method": "POST",
                 "type": "query",
                 "cases": [
                     {
@@ -167,7 +215,7 @@ var testData = [
         ]
     },
     {
-        name: "groupB",
+        name: "groupA",
         dependencies: [],
         urls: [
             {

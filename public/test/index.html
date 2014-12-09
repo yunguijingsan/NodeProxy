@@ -38,7 +38,7 @@
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#{{operation.id}}" aria-expanded="true"
                                            href="#PD{{operation.id}}" aria-controls="PC{{operation.id}}">
-                                            {{operation.name}}-{{operation.path}}<!----&ndash;&gt;{{operation.dependencies}}-->
+                                            <span class="http-method http-method-{{operation.method}}">{{operation.method}}</span>{{operation.name}}@{{operation.path}}<!----&ndash;&gt;{{operation.dependencies}}-->
                                         </a>
                                     </h4>
                                 </div>

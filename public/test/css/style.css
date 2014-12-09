@@ -4,6 +4,30 @@
 .http-method-POST{
     background-color: green;
 }
+.http-method-PUT{
+    background-color: #c5862b;
+}
+.http-method-DELETE{
+    background-color: #a41e22;
+}
+.http-method{
+    width: 50px;
+    height: 25px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    font-size: 0.7em;
+    text-align: center;
+    padding: 7px 0 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
 .heading{
 }
 .content{
