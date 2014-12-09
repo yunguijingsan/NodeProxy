@@ -43,7 +43,7 @@ var cartman = (function () {
         }
         var state = STATUS.SUCCESS;
         group.dependencies.forEach(function (g) {
-            if (getGroupState(g.name) != STATUS.SUCCESS) {
+            if (getGroupState(g.name,group) != STATUS.SUCCESS) {
                 state = STATUS.DANGER;
                 return;
             }
@@ -54,22 +54,32 @@ var cartman = (function () {
             });
         }
     };
-    var getGroupState = function (groupName) {
+    var getGroupState = function (groupName,currentG) {
         var state = STATUS.DEFAULT;
+        var isExist = false;
         _groups.forEach(function (group) {
             if (group.name == groupName) {
+                isExist = true;
                 state = group.state;
             }
         })
+        if(!isExist){
+            alert(groupName + " that "+ currentG.name+" depend on is not present");
+        }
         return state;
     }
-    var getUrlState = function (group, uName) {
+    var getUrlState = function (group, uName,currentU) {
         var state = STATUS.DEFAULT;
+        var isExist = false;
         group.urls.forEach(function (url) {
             if (url.name == uName) {
+                isExist = true;
                 state = url.state;
             }
-        })
+        });
+        if(!isExist){
+            alert(uName +" that "+currentU.name + " depend on is not present");
+        }
         return state;
     }
     var executeUrl = function (url, group) {
@@ -78,7 +88,7 @@ var cartman = (function () {
         }
         var st = STATUS.SUCCESS;
         url.dependencies.forEach(function (u) {
-            if (getUrlState(group, u) != STATUS.SUCCESS) {
+            if (getUrlState(group, u,url) != STATUS.SUCCESS) {
                 st = STATUS.DANGER;
                 return;
             }
@@ -176,8 +186,8 @@ var cartman = (function () {
             currentGroup++;
             var state = STATUS.SUCCESS;
             var group = _groups[currentGroup];
-            group.dependencies.forEach(function (g) {
-                if (getGroupState(g.name) != STATUS.SUCCESS) {
+            group.dependencies.forEach(function (groupName) {
+                if (getGroupState(groupName,group) != STATUS.SUCCESS) {
                     state = STATUS.DANGER;
                     return;
                 }
@@ -200,7 +210,7 @@ var cartman = (function () {
         var group = _groups[currentGroup];
         var url = group.urls[currentUrl];
         url.dependencies.forEach(function (u) {
-            if (getUrlState(group, u) != STATUS.SUCCESS) {
+            if (getUrlState(group, u,url) != STATUS.SUCCESS) {
                 st = STATUS.DANGER;
                 return;
             }

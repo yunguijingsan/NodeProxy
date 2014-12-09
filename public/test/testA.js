@@ -62,7 +62,7 @@ var testData = [
                             "str" : "中文测试"
                         },
                         "description": "中文测试",
-                        "expectation": "0中文测试",
+                        "expectation": "中文测试",
                         "result": ""
                     },
                     {
