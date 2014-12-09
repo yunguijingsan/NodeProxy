@@ -191,12 +191,12 @@ var cartman = (function () {
             type: url.method,
             data: getJsonParam(aCase.params),
             success: function(data) {
-                if(data == aCase.expectation){
+                if(isEqual(data,aCase.expectation)){
                     aCase.state = "success";
                 }else{
                     aCase.state = "danger";
-                    aCase.result = data;
                 }
+                aCase.result = data;
                 _$scope.stepCount ++;
                 applyUrl(url,group);
                 executeNext();
@@ -210,6 +210,22 @@ var cartman = (function () {
             }
         });
     };
+    var isEqual = function (data,expectation){
+        if(data instanceof Object){
+            for(var key in data){
+                if(!isEqual(data[key],expectation[key])){
+                    return false;
+                }
+            }
+        }else{
+            if(data == expectation){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
     var getJsonParam = function (params){
         var str = "";
         for(var key in params){

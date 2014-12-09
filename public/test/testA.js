@@ -1,318 +1,280 @@
 var testData = [
     {
-        name:"groupA",
-        dependencies:[],
-        urls:[
+        name: "groupC",
+        dependencies: [],
+        urls: [
             {
-                "name":"url1",
-                "dependencies":[],
-                "path": "/mathA/sum",
-                "method": "GET",
-                "type":"query",
-                "params":["a","b"],
-                "cases":[{
-                    "params":{
-                        a:1,
-                        b:2
-                    },
-                    "description": "1+2",
-                    "expectation": 3,
-                    "result":""
-                }]
-            },
-            {
-                "name":"url2",
-                "dependencies":[],
-                "path": "/mathA/sum",
-                "method": "GET",
-                "type":"query",
-                "params":["a","b"],
+                "name": "url1",
+                "dependencies": [],
+                "path": "/mathA/docInfo",
+                "method": "POST",
                 "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {"docInfo": {
+                            "contact": "我",
+                            "description": "",
+                            "license": "",
+                            "licenseUrl": "",
+                            "termsOfServiceUrl": "",
+                            "title": ""
+                        }},
+                        "description": "我",
+                        "expectation": {
+                            "contact": "我",
+                            "description": "",
+                            "license": "",
+                            "licenseUrl": "",
+                            "termsOfServiceUrl": "",
+                            "title": ""
+                        },
+                        "result": ""
+                    },
+                    {
+                        "params": {"docInfo": {
+                            "contact": "我的",
+                            "description": "",
+                            "license": "",
+                            "licenseUrl": "",
+                            "termsOfServiceUrl": "",
+                            "title": ""
+                        }},
+                        "description": "我的",
+                        "expectation": {
+                            "contact": "我的",
+                            "description": "",
+                            "license": "",
+                            "licenseUrl": "",
+                            "termsOfServiceUrl": "",
+                            "title": ""
+                        },
+                        "result": ""
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        name: "groupA",
+        dependencies: [],
+        urls: [
+            {
+                "name": "url1",
+                "dependencies": [],
+                "path": "/mathA/sum",
+                "method": "GET",
+                "type": "query",
+                "params": ["a", "b"],
+                "cases": [
+                    {
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "1+2",
                         "expectation": 3,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
+                        "result": ""
+                    }
+                ]
+            },
+            {
+                "name": "url2",
+                "dependencies": [],
+                "path": "/mathA/sum",
+                "method": "GET",
+                "type": "query",
+                "params": ["a", "b"],
+                "cases": [
+                    {
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
-                        "description":"0+2",
+                        "description": "1+2",
+                        "expectation": 3,
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: 0,
+                            b: 2
+                        },
+                        "description": "0+2",
                         "expectation": 2,
-                        "result":""
-                    },{
-                        "params":{
-                            a:-1,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: -1,
+                            b: 2
                         },
                         "description": "-1+2",
                         "expectation": 1,
-                        "result":""
-                    }]},
+                        "result": ""
+                    }
+                ]},
             {
-                "name":"url3",
-                "dependencies":[],
+                "name": "url3",
+                "dependencies": [],
                 "path": "/mathA/test",
                 "method": "GET",
-                "type":"query",
-                "cases":[
+                "type": "query",
+                "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "1/2",
                         "expectation": 0.5,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: 0,
+                            b: 2
                         },
-                        "description":"0/2",
-                        "expectation":1,
-                        "result":"" }
+                        "description": "0/2",
+                        "expectation": 0,
+                        "result": "" }
                 ]
             },
             {
-                "name":"url4",
-                "dependencies":["url1"],
+                "name": "url4",
+                "dependencies": ["url1"],
                 "path": "/mathA/max",
                 "method": "GET",
-                "type":"query",
-                "cases":[
+                "type": "query",
+                "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "max(1,2)",
                         "expectation": 2,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: 0,
+                            b: 2
                         },
-                        "description":"max(0,2)",
+                        "description": "max(0,2)",
                         "expectation": 2,
-                        "result":"" }
+                        "result": "" }
                 ]
             }
         ]
     },
     {
-        name:"groupB",
-        dependencies:[],
-        urls:[
+        name: "groupB",
+        dependencies: [],
+        urls: [
             {
-                "name":"url1",
-                "dependencies":[],
+                "name": "url1",
+                "dependencies": [],
                 "path": "/mathB/sum",
-                "method": "GET",
-                "type":"query",
-                "params":["a","b"],
-                "cases":[{
-                    "params":{
-                        a:1,
-                        b:2
-                    },
-                    "description": "1+2",
-                    "expectation": 3,
-                    "result":""
-                }]
-            },
-            {
-                "name":"url2",
-                "dependencies":[],
-                "path": "/mathB/sum",
-                "method": "GET",
-                "type":"query",
-                "params":["a","b"],
+                "method": "POST",
+                "type": "query",
+                "params": ["a", "b"],
                 "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "1+2",
                         "expectation": 3,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
-                        },
-                        "description":"0+2",
-                        "expectation": 2,
-                        "result":""
-                    },{
-                        "params":{
-                            a:-1,
-                            b:2
-                        },
-                        "description": "-1+2",
-                        "expectation": 1,
-                        "result":""
-                    }]},
-            {
-                "name":"url3",
-                "dependencies":[],
-                "path": "/mathB/test",
-                "method": "GET",
-                "type":"query",
-                "cases":[
-                    {
-                        "params":{
-                            a:1,
-                            b:2
-                        },
-                        "description": "1/2",
-                        "expectation": 0.5,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
-                        },
-                        "description":"0/2",
-                        "expectation":1,
-                        "result":"" }
+                        "result": ""
+                    }
                 ]
             },
             {
-                "name":"url4",
-                "dependencies":["url3"],
-                "path": "/mathB/max",
-                "method": "GET",
-                "type":"query",
-                "cases":[
-                    {
-                        "params":{
-                            a:1,
-                            b:2
-                        },
-                        "description": "max(1,2)",
-                        "expectation": 2,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
-                        },
-                        "description":"max(0,2)",
-                        "expectation": 2,
-                        "result":"" }
-                ]
-            }
-        ]
-    },
-    {
-        name:"groupC",
-        dependencies:[],
-        urls:[
-            {
-                "name":"url1",
-                "dependencies":[],
+                "name": "url2",
+                "dependencies": [],
                 "path": "/mathB/sum",
                 "method": "POST",
-                "type":"query",
-                "params":["a","b"],
-                "cases":[{
-                    "params":{
-                        a:1,
-                        b:2
-                    },
-                    "description": "1+2",
-                    "expectation": 3,
-                    "result":""
-                }]
-            },
-            {
-                "name":"url2",
-                "dependencies":[],
-                "path": "/mathB/sum",
-                "method": "POST",
-                "type":"query",
-                "params":["a","b"],
+                "type": "query",
+                "params": ["a", "b"],
                 "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "1+2",
                         "expectation": 3,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: 0,
+                            b: 2
                         },
-                        "description":"0+2",
+                        "description": "0+2",
                         "expectation": 2,
-                        "result":""
-                    },{
-                        "params":{
-                            a:-1,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: -1,
+                            b: 2
                         },
                         "description": "-1+2",
                         "expectation": 1,
-                        "result":""
-                    }]},
+                        "result": ""
+                    }
+                ]},
             {
-                "name":"url3",
-                "dependencies":[],
+                "name": "url3",
+                "dependencies": [],
                 "path": "/mathB/test",
                 "method": "POST",
-                "type":"query",
-                "cases":[
+                "type": "query",
+                "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "1/2",
                         "expectation": 0.5,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: 0,
+                            b: 2
                         },
-                        "description":"0/2",
-                        "expectation":0,
-                        "result":"" }
+                        "description": "0/2",
+                        "expectation": 0,
+                        "result": "" }
                 ]
             },
             {
-                "name":"url4",
-                "dependencies":["url1"],
+                "name": "url4",
+                "dependencies": ["url1"],
                 "path": "/mathB/max",
                 "method": "POST",
-                "type":"query",
-                "cases":[
+                "type": "query",
+                "cases": [
                     {
-                        "params":{
-                            a:1,
-                            b:2
+                        "params": {
+                            a: 1,
+                            b: 2
                         },
                         "description": "max(1,2)",
                         "expectation": 2,
-                        "result":""
-                    },{
-                        "params":{
-                            a:0,
-                            b:2
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            a: 0,
+                            b: 2
                         },
-                        "description":"max(0,2)",
+                        "description": "max(0,2)",
                         "expectation": 2,
-                        "result":"" }
+                        "result": "" }
                 ]
             }
         ]

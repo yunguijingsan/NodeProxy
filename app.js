@@ -3,6 +3,8 @@ var querystring = require('querystring');
 var http = require('http');
 var bodyParser = require('body-parser');
 var is   = require('type-is');
+var iconv = require('iconv-lite');
+
 var app = express();
 
 var proxyServer = "localhost";
@@ -58,13 +60,13 @@ function getJsonParam(body) {
 }
 function postProxy(req, res) {
     var proxyPath = req.url;
-    console.log(req.body);
     if(is(req,['json'])){
-       var data = getJsonParam(req.body);
+       var data =getJsonParam(req.body);
     }else{
         var data = require("querystring").stringify(req.body);
     }
-
+    data = iconv.encode(data,"UTF-8");
+    console.log(data.length + "  "+data) ;
     var opt = {
         method: "POST",
         host: proxyServer,
@@ -100,7 +102,7 @@ function proxy(req,res,opt,data,isPost){
         res.status(400).send(data);
     });
     if(isPost){
-        req_proxy.write(data);
+        req_proxy.write(data +"\n");
     }
     req_proxy.end();
 }
