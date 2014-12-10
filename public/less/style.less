@@ -1,0 +1,61 @@
+@color : #4D926F;
+
+.title {
+  color: @color;
+}
+
+h2 {
+  color: @color;
+}
+
+@width : 200px;
+@height : 200px;
+
+.bordered {
+  border-top: dotted 1px black;
+  border-left: dotted 2px darkblue;
+  border-bottom: solid 3px #0000ff;
+  border-right: solid 2px lightblue;
+}
+
+.rounded-corners (@radius : 5px) {
+  width: @width;
+  height: @height;
+  border-radius: @radius;
+  background: #0000ff;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  .bordered;
+}
+
+#divHeader {
+  width: @width;
+  height: @height;
+  padding: @width/6;
+  margin: @height/5;
+  border: 1px solid;
+  .rounded-corners(20px);
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 12px;
+    a {
+      &:hover {
+        border-width: 1px
+      }
+    }
+  }
+}
+#divHeader2{
+  #divHeader;
+  background-color: lightblue;
+}
+#header {
+  .rounded-corners;
+}
+
+#footer {
+  .rounded-corners(10px);
+}

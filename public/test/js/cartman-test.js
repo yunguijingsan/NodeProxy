@@ -234,7 +234,7 @@ var cartman = (function () {
         $.ajax({
             url: url.path,
             type: url.method,
-            data: getJsonParam(aCase.params),
+            data: getJsonParam(aCase.params,url),
             success: function (data) {
                 if (isEqual(data, aCase.expectation)) {
                     aCase.state = "success";
@@ -243,6 +243,13 @@ var cartman = (function () {
                 }
                 aCase.result = data;
                 _$scope.stepCount++;
+                if(url.success && url.success instanceof Function){
+                    try {
+                        url.success(data);
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
                 applyUrl(url, group);
                 executeNext();
             },
@@ -250,6 +257,13 @@ var cartman = (function () {
                 aCase.state = "danger";
                 aCase.result = xhr.responseText;
                 _$scope.stepCount++;
+                if(url.fail && url.fail instanceof Function){
+                    try {
+                        url.fail(data);
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
                 applyUrl(url, group);
                 executeNext();
             }
@@ -271,7 +285,7 @@ var cartman = (function () {
         }
         return true;
     }
-    var getJsonParam = function (params) {
+    var getJsonParam = function (params,url) {
         var str = "";
         for (var key in params) {
             if (str == "") {
@@ -279,6 +293,17 @@ var cartman = (function () {
             } else {
                 str += "&" + key + "=" + JSON.stringify(params[key]);
             }
+        }
+        if(url.authorities && url.authorities instanceof Array && url.authorities.length >0){
+            url.authorities.forEach(function(authority){
+                for(var key in authority){
+                    if (str == "") {
+                        str += key + "=" + JSON.stringify(authority[key]);
+                    } else {
+                        str += "&" + key + "=" + JSON.stringify(authority[key]);
+                    }
+                }
+            })
         }
         return str;
     }

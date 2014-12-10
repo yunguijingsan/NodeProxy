@@ -1,4 +1,11 @@
-var testData = [
+
+var _cartman_test_authorizes ={
+    username : 'lcf',
+    date :'2014-12-10'
+}
+
+
+var _cartman_test_data = [
     {
         name: "groupC",
         dependencies: [],
@@ -7,6 +14,7 @@ var testData = [
                 "name": "url1",
                 "dependencies": [],
                 "path": "/mathB/docInfo",
+                "authorities":[_cartman_test_authorizes],
                 "method": "POST",
                 "cases": [
                     {
@@ -78,6 +86,7 @@ var testData = [
             {
                 "name": "url3",
                 "dependencies": ["url2"],
+                "authorities":[_cartman_test_authorizes],
                 "path": "/mathB/testChinese",
                 "method": "GET",
                 "cases": [
@@ -223,6 +232,7 @@ var testData = [
                 "dependencies": [],
                 "path": "/mathB/sum",
                 "method": "POST",
+                "authorities":[_cartman_test_authorizes],
                 "type": "query",
                 "params": ["a", "b"],
                 "cases": [
