@@ -16,7 +16,7 @@ $(function () {
 })
 
 function init() {
-//    $(".collapse").collapse("");
+    $(".collapse").collapse("show");
     var isToggle = false;
     $("button[name='group']").click(function () {
        isToggle =  changeStatus(isToggle,function(){
@@ -46,12 +46,20 @@ function init() {
         return !flag;
     }
 
-    $("#navbar ul li a").click(function(){
-        $("#navbar ul li a").removeClass("a_active");
-        $("#navbar ul li a").next().removeClass("active")
-        $(this).next().addClass("active")
-        $(this).addClass("a_active");
+    $(".a-ul").click(function(){
+        $(".a-ul").parent().removeClass("active");
+        $(".a-ul").next().removeClass("active");
+        $(this).next().addClass("active");
+        $(this).parent().addClass("active");
     });
+    $(".a-ul").parent().removeClass("active");
+    $(".a-ul").next().removeClass("active");
+
+    $(".a-li").click(function(){
+        $(".a-li").parent().removeClass("active");
+        $(this).parent().addClass("active");
+    });
+    $(".a-li").parent().removeClass("active");
 }
 
 

@@ -47,30 +47,6 @@ body {
   position: relative;
 }
 
-.a_active(@color : #563d7c) {
-  padding-left: 19px;
-  color: @color;
-  text-decoration: none;
-  background-color: transparent;
-  border-left: 1px solid @color;
-  font: bold;
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-  .a_active(#563dcc);
-  border-left: 1px solid #563dcc;
-  font: auto;
-}
-
-.nav > li > a {
-  display: block;
-  padding: 4px 20px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #999;
-  position: relative;
-}
-
 @headHeight : 50px;
 .test-header {
   background-color: lightblue;
@@ -96,21 +72,40 @@ body {
   height: @headHeight /5;
 }
 
-#navbar ul li ul {
+
+.a_active(@color : #563d7c) {
+  padding-left: 19px;
+  color: @color;
+  text-decoration: none;
+  background-color: transparent;
+  border-left: 1px solid @color;
+  font: bold;
+}
+
+.nav > li > a {
+  display: block;
+  padding: 4px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  position: relative;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  .a_active(#563dcc);
+}
+
+.nav-ul{
   height: 0;
   overflow-y: hidden;
 }
-
-#navbar ul li .active {
+.nav-li>.active{
   height: auto;
 }
 
-#navbar ul li ul li .active {
-  .a_active(#563d7c);
-}
-#navbar ul li ul li{
+.nav-ul-li{
   margin-left: 20px;
 }
-
-
+.active>a{
+  .a_active();
+}
 

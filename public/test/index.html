@@ -19,6 +19,7 @@
     <!--</div>-->
 <!--</div>-->
 <div class="container container-margin-top">
+    <div class="col-md-1"></div>
     <div class="col-md-9" role="main">
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="{{runStepCount * 100 / stepCount}}"
@@ -26,8 +27,7 @@
                 <span class="sr-only">0% Complete</span>
             </div>
         </div>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" data-spy="scroll"
-             data-target="#navbar">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-{{service.state}}" ng-repeat="service in groups">
                 <div class="panel-heading" role="tab" id="PH{{service.id}}">
                     <h4 class="panel-title">
@@ -69,14 +69,14 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div data-spy="affix" data-offset-top="60" data-offset-top="200" id="navbar">
-            <ul class="nav" >
-                <li ng-repeat="service in groups">
-                    <a href="#PH{{service.id}}">{{service.name}}</a>
-                    <ul class="nav">
-                        <li ng-repeat="url in service.urls">
-                            <a href="#PH{{url.id}}">{{url.name}}</a>
+    <div class="col-md-2">
+        <div class="affix" data-offset-top="20px" id="navbar">
+            <ul class="nav">
+                <li class="nav-li" ng-repeat="service in groups">
+                    <a href="#PH{{service.id}}" class="a-ul" style="font-size: 14px;"><strong>{{service.name}}</strong></a>
+                    <ul class="nav nav-ul">
+                        <li class="nav-ul-li" ng-repeat="url in service.urls">
+                            <a href="#PH{{url.id}}" class="a-li">{{url.name}}</a>
                         </li>
                     </ul>
                 </li>
@@ -92,7 +92,6 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.js"></script>
 <script src="./js/angular.min.js"></script>
-<script src="./js/stickUp.min.js"></script>
 <script src="./js/cartman-test.js" type="text/javascript"></script>
 <script src="./js/controller.js" type="text/javascript"></script>
 <script src="./js/less.min.js" type="text/javascript"></script>
