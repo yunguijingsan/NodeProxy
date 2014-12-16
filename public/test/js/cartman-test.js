@@ -31,7 +31,7 @@ var cartman = (function () {
             }
         })
         _$scope.runStepCount = count;
-        executeNext();
+//        executeNext();
 //        _groups.forEach(function(group){
 //            executeGroup(group);
 //        })

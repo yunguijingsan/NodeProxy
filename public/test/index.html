@@ -11,16 +11,21 @@
             >
     <link rel="stylesheet/less" type="text/css" href="./css/style.less">
 </head>
-<body  ng-controller="TestAllCrl">
+<body ng-controller="TestAllCrl">
+<div class="page-header">
+    <h1>Winsion AFC 测试
+        <small>powered by cartman-test</small>
+    </h1>
+</div>
+<!--<button type="button" class="btn btn-success" ng-click="start()">运行</button>-->
 <!--<div class="test-header">-->
-    <!--<div class="test-header-content">-->
-        <!--<button type="button" class="btn btn-primary btn-sm" name="group">全部收起</button>-->
-        <!--<button type="button" class="btn btn-primary btn-sm" name="success">隐藏成功</button>-->
-    <!--</div>-->
+<!--<div class="test-header-content">-->
+<!--<button type="button" class="btn btn-primary btn-sm" name="group">全部收起</button>-->
+<!--<button type="button" class="btn btn-primary btn-sm" name="success">隐藏成功</button>-->
+<!--</div>-->
 <!--</div>-->
 <div class="container container-margin-top">
-    <div class="col-md-1"></div>
-    <div class="col-md-9" role="main">
+    <div class="col-md-10" role="main">
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="{{runStepCount * 100 / stepCount}}"
                  aria-valuemin="0" aria-valuemax="100" style="width: {{runStepCount * 100 / stepCount}}%;">
@@ -46,7 +51,7 @@
                                         <a data-toggle="collapse" data-parent="#{{operation.id}}" aria-expanded="true"
                                            href="#PD{{operation.id}}" aria-controls="PC{{operation.id}}">
                                             <span class="http-method-{{operation.method}}">{{operation.method}}</span>{{operation.name}}@{{operation.path}}
-                                            <!----&ndash;&gt;{{operation.dependencies}}-->
+                                            <!------>{{operation.dependencies}}-->
                                         </a>
                                     </h4>
                                 </div>
@@ -70,6 +75,8 @@
         </div>
     </div>
     <div class="col-md-2">
+        <button type="button" id="start" class="btn btn-sm btn-success">运行</button><br>
+        <button type="button" class="btn btn-primary btn-sm" name="group">展开/收起</button>
         <div class="affix" data-offset-top="20px" id="navbar">
             <ul class="nav">
                 <li class="nav-li" ng-repeat="service in groups">

@@ -8,24 +8,21 @@ function TestAllCrl($http, $scope) {
 $(function () {
     $(document).ready(function () {
         init();
-        scroll();
     });
-    var scroll = function(){
-
-    }
 })
 
 function init() {
     $(".collapse").collapse("show");
     var isToggle = false;
     $("button[name='group']").click(function () {
-       isToggle =  changeStatus(isToggle,function(){
-           $("button[name='group']").text("全部展开")
-            $(".collapse").collapse("toggle");
-        },function(){
-           $("button[name='group']").text("全部收起")
-            $(".collapse").collapse("toggle");
-        })
+        $(".collapse").collapse("toggle");
+//       isToggle =  changeStatus(isToggle,function(){
+//           $("button[name='group']").text("全部展开")
+//            $(".collapse").collapse("toggle");
+//        },function(){
+//           $("button[name='group']").text("全部收起")
+//            $(".collapse").collapse("toggle");
+//        })
     });
     var isOnlyDanger = false;
     $("button[name='success']").click(function () {
@@ -60,6 +57,11 @@ function init() {
         $(this).parent().addClass("active");
     });
     $(".a-li").parent().removeClass("active");
+
+    $("#start").click(function(){
+        cartman.execute();
+//        $(".collapse").collapse("show");
+    });
 }
 
 
