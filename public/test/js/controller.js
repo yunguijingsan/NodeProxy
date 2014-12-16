@@ -3,6 +3,7 @@
  */
 function TestAllCrl($http, $scope) {
     cartman.init($scope, _cartman_test_data);
+    cartman.execute();
     $scope.groups = _cartman_test_data;
 }
 $(function () {

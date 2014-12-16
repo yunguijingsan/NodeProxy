@@ -38,7 +38,7 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#{{service.id}}" aria-expanded="true"
                            href="#PD{{service.id}}" aria-controls="PC{{service.id}}">
-                            {{service.name}}
+                            {{service.name}}--->{{service.dependencies}}
                         </a>
                     </h4>
                 </div>
@@ -51,7 +51,7 @@
                                         <a data-toggle="collapse" data-parent="#{{operation.id}}" aria-expanded="true"
                                            href="#PD{{operation.id}}" aria-controls="PC{{operation.id}}">
                                             <span class="http-method-{{operation.method}}">{{operation.method}}</span>{{operation.name}}@{{operation.path}}
-                                            <!------>{{operation.dependencies}}-->
+                                           --->{{operation.dependencies}}
                                         </a>
                                     </h4>
                                 </div>
