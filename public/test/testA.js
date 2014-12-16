@@ -107,6 +107,31 @@ var _cartman_test_data = [
                         "result": ""
                     }
                 ]
+            },
+            {
+                "name": "url4",
+                "dependencies": [],
+                "authorities":[_cartman_test_authorizes],
+                "path": "/mathB/testChinese",
+                "method": "GET",
+                "cases": [
+                    {
+                        "params": {
+                            "str" : "中文测试"
+                        },
+                        "description": "中文测试",
+                        "expectation": "中文测试",
+                        "result": ""
+                    },
+                    {
+                        "params": {
+                            "str" : "222中文测试"
+                        },
+                        "description": "222中文测试",
+                        "expectation": "222中文测试",
+                        "result": ""
+                    }
+                ]
             }
         ]
     },

@@ -218,7 +218,7 @@ var cartman = (function () {
         if (st == STATUS.SUCCESS) {
             return true;
         } else {
-            return nextGroup();
+            return nextUrl();
         }
     }
     var executeNext = function () {
