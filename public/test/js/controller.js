@@ -13,7 +13,7 @@ $(function () {
 })
 
 function init() {
-    $(".collapse").collapse("show");
+//    $(".collapse").collapse("show");
     var isToggle = false;
     $("button[name='group']").click(function () {
         $(".collapse").collapse("toggle");
@@ -60,11 +60,16 @@ function init() {
     $(".a-li").parent().removeClass("active");
 
     $("#start").click(function(){
-        cartman.execute();
+        getTestFile( $("#testFile").val());
 //        $(".collapse").collapse("show");
     });
 }
 
+function getTestFile(fileName){
+    $.getScript(fileName,function(data){
+        cartman.reset(_cartman_test_data);
+    })
+}
 
 function combineData(data) {
     for (var i = 0; i < data.apis.length; i++) {

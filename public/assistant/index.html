@@ -1,0 +1,273 @@
+<!DOCTYPE html >
+<html ng-app>
+<head lang="en" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="./css/style.less">
+    <title>Winsion</title>
+</head>
+<body>
+<div class="page-header">
+    <h1>Winsion
+    </h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel-group" id="a" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="PH">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#" aria-expanded="true"
+                           href="#PD" aria-controls="PC">
+                           查询
+                        </a>
+                    </h4>
+                </div>
+                <div id="PD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <form role="form" id="queryForm">
+                            <div class="form-group col-md-2">
+                                <input type="date" class="form-control col-md-3" name="startDate" value="" id="startDate" placeholder="乘车时间">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control col-md-3" name="fromStation" value="北京" id="fromStation" placeholder="出发地">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control col-md-3" name="toStation" id="toStation" placeholder="目的地">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <select id="priority" name="priority" class="form-control col-md-3">
+                                    <option>时间最短优先</option>
+                                    <option>换乘最少优先</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" id="query" class="btn btn-default btn-primary">查询</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-controller="TestController">
+        <div class="panel-group" id="a1" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="PH1">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#" aria-expanded="true"
+                           href="#PD1" aria-controls="PC1">
+                            方案1
+                        </a>
+                    </h4>
+                </div>
+                <div id="PD1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <table class="table table-striped ">
+                            <thead>
+                            <tr>
+                                <td>车次</td>
+                                <td>
+                                    <strong class="start-s">出发站</strong><br>
+                                    <strong>到达站</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">出发时间</strong><br>
+                                    <strong class="arriveTime">到达时间</strong>
+                                </td>
+                                <td><strong>历时</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>3019430</td>
+                                <td>
+                                    <strong>广州</strong><br>
+                                    <strong>韶关</strong>
+                                </td>
+                                <td>
+                                    <strong>14:27</strong><br>
+                                    <strong class="arriveTime">16:50</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            <tr>
+                                <td>K521</td>
+                                <td>
+                                    <strong>韶关</strong><br>
+                                    <strong>北京</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">17:35</strong><br>
+                                    <strong class="arriveTime">13:50</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            <tr>
+                                <td>K511</td>
+                                <td>
+                                    <strong>北京</strong><br>
+                                    <strong>哈尔滨</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">12:40</strong><br>
+                                    <strong class="arriveTime">3:22</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="a2" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="PH2">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#" aria-expanded="true"
+                           href="#PD2" aria-controls="PC2">
+                            方案2
+                        </a>
+                    </h4>
+                </div>
+                <div id="PD2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <table class="table table-striped ">
+                            <thead>
+                            <tr>
+                                <td>车次</td>
+                                <td>
+                                    <strong class="start-s">出发站</strong><br>
+                                    <strong>到达站</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">出发时间</strong><br>
+                                    <strong class="arriveTime">到达时间</strong>
+                                </td>
+                                <td><strong>历时</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>3019430</td>
+                                <td>
+                                    <strong>广州</strong><br>
+                                    <strong>韶关</strong>
+                                </td>
+                                <td>
+                                    <strong>14:27</strong><br>
+                                    <strong class="arriveTime">16:50</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            <tr>
+                                <td>K521</td>
+                                <td>
+                                    <strong>韶关</strong><br>
+                                    <strong>北京</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">17:35</strong><br>
+                                    <strong class="arriveTime">13:50</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            <tr>
+                                <td>K511</td>
+                                <td>
+                                    <strong>北京</strong><br>
+                                    <strong>哈尔滨</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">12:40</strong><br>
+                                    <strong class="arriveTime">3:22</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="a3" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="PH3">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#" aria-expanded="true"
+                           href="#PD3" aria-controls="PC3">
+                            方案3
+                        </a>
+                    </h4>
+                </div>
+                <div id="PD3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <table class="table table-striped ">
+                            <thead>
+                            <tr>
+                                <td>车次</td>
+                                <td>
+                                    <strong class="start-s">出发站</strong><br>
+                                    <strong>到达站</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">出发时间</strong><br>
+                                    <strong class="arriveTime">到达时间</strong>
+                                </td>
+                                <td><strong>历时</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>3019430</td>
+                                <td>
+                                    <strong>广州</strong><br>
+                                    <strong>韶关</strong>
+                                </td>
+                                <td>
+                                    <strong>14:27</strong><br>
+                                    <strong class="arriveTime">16:50</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            <tr>
+                                <td>K521</td>
+                                <td>
+                                    <strong>韶关</strong><br>
+                                    <strong>北京</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">17:35</strong><br>
+                                    <strong class="arriveTime">13:50</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            <tr>
+                                <td>K511</td>
+                                <td>
+                                    <strong>北京</strong><br>
+                                    <strong>哈尔滨</strong>
+                                </td>
+                                <td>
+                                    <strong class="start-t">12:40</strong><br>
+                                    <strong class="arriveTime">3:22</strong>
+                                </td>
+                                <td>乘车凭证</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery.min.js" type="text/javascript"></script>
+<script src="./js/bootstrap.min.js" type="text/javascript"></script>
+<script src="./js/angular.min.js"  type="text/javascript"></script>
+<script src="./js/controller.js" type="text/javascript"></script>
+<script src="./js/less.min.js" type="text/javascript"></script>
+</body>
+</html>
