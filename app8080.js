@@ -17,11 +17,15 @@ app.use(express.static(__dirname + '/public'));
 
 var fs = require("fs")
 var port = 8080;
+var count = 0;
 app.use(function(req,res){
-    console.log(new Date());
-    res.send('from : ' +port);
+    console.log(req.header("Host")+"\t"+req.header("X-Real-IP")+" "+count);
+    res.send('from : ' +port +" " + count++);
 })
 
 var server = app.listen(port, function() {
     console.log('Express server listening on port ' + server.address().port);
 });
+
+
+
